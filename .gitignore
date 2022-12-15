@@ -107,3 +107,4 @@ dist
 package-lock.json
 **/.DS_Store
 test.sh
+yarn.lock
