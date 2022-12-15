@@ -1,3 +1,5 @@
+![Tinfoil Logo](assets/tinfoil.jpeg "Tinfoil Logo")
+
 # Tinfoil
 Tinfoil is a small and lightweight wrapper for Discord's REST and Gateway API, written in Typescript and designed with scalability in mind. It leaves a lot of stuff up to the user, allowing for more fine-tuned control over how your bot interacts with the API.
 
