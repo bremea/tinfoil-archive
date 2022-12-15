@@ -13,16 +13,17 @@ class RestClient {
     this.users = new Users(this);
   }
 
-  async request(endpoint: string, method: HTTPMethods): Promise<any> {
+  async request(endpoint: string, method: HTTPMethods, body?: any): Promise<any> {
     try {
       const req = Centra(this.baseURL + endpoint, method);
-	  req.header('Authorization', this.authorization);
+      req.header("Authorization", this.authorization);
+      if (body) req.body(body);
       const res = await req.send();
       return await res.json();
     } catch (e) {
-		console.error(e);
-		return undefined;
-	}
+      console.error(e);
+      return undefined;
+    }
   }
 }
 

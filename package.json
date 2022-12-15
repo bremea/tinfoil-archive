@@ -24,10 +24,10 @@
     "@types/centra": "^2.2.0",
     "@types/node": "^18.11.9",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "discord-api-types": "^0.37.23"
   },
   "dependencies": {
-    "centra": "^2.6.0",
-    "discord-api-types": "^0.37.23"
+    "centra": "^2.6.0"
   }
 }
