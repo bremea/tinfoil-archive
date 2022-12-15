@@ -3,7 +3,6 @@ import {
   APIGuild,
   APIGuildMember,
   APIUser,
-  RESTError,
   RESTGetAPICurrentUserConnectionsResult,
   RESTPatchAPICurrentUserJSONBody,
   RESTPostAPICurrentUserCreateDMChannelJSONBody,
