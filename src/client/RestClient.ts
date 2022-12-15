@@ -19,10 +19,13 @@ class RestClient {
       req.header("Authorization", this.authorization);
       if (body) req.body(body);
       const res = await req.send();
-      return await res.json();
+      if (res.statusCode === 200) {
+        return await res.json();
+      } else {
+        return undefined;
+      }
     } catch (e) {
-      console.error(e);
-      return undefined;
+      throw e;
     }
   }
 }
