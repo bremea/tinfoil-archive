@@ -1,12 +1,13 @@
 {
   "name": "tinfoil",
   "version": "1.0.0",
+  "type": "module",
   "description": "Small Discord API wrapper designed for scalability",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "start": "node ./dist",
-    "dev": "nodemon ./src/main.ts"
+    "test": "ts-node-esm ./test/test.ts"
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,13 @@
   },
   "homepage": "https://github.com/bremea/tinfoil#readme",
   "devDependencies": {
+    "@types/centra": "^2.2.0",
     "@types/node": "^18.11.9",
-    "nodemon": "^2.0.15",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "centra": "^2.6.0",
+    "discord-api-types": "^0.37.23"
   }
 }
