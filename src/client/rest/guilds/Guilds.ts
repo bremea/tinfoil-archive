@@ -9,6 +9,7 @@ import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
 import Threads from "./Threads.js";
+import Widget from "./Widget.js";
 
 class GuildsAPI extends BaseAPI {
   /** Get guild */
@@ -55,6 +56,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Integrations API */
   public integrations: GuildIntegrations = new GuildIntegrations(this.client);
+
+  /** Widget API */
+  public widget: Widget = new Widget(this.client);
 
   /** Role API */
   public roles: GuildRoles = new GuildRoles(this.client);
