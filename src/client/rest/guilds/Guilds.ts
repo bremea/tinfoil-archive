@@ -5,6 +5,7 @@ import AutoModeration from "./AutoModeration.js";
 import Emojis from "./Emojis.js";
 import GuildChannels from "./GuildChannels.js";
 import GuildIntegrations from "./GuildIntegrations.js";
+import GuildTemplate from "./GuildTemplate.js";
 import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
@@ -15,7 +16,7 @@ import WelcomeScreen from "./WelcomeScreen.js";
 import Widget from "./Widget.js";
 
 class GuildsAPI extends BaseAPI {
-  /** Get guild */
+  /** Create guild */
   new = (options: APITypes.RESTPostAPIGuildsJSONBody): Promise<APITypes.APIGuild> => this.client.request(`/guilds`, "POST", options);
   /** Get guild */
   get = (guildID: APITypes.Snowflake): Promise<APITypes.APIGuild> => this.client.request(`/guilds/${guildID}`, "GET");
@@ -25,6 +26,12 @@ class GuildsAPI extends BaseAPI {
   modify = (guildID: APITypes.Snowflake, options: WithAuditReason<APITypes.RESTPatchAPIGuildJSONBody>): Promise<APITypes.APIGuild> => this.client.request(`/guilds/${guildID}`, "PATCH", options);
   /** Delete guild */
   delete = (guildID: APITypes.Snowflake): Promise<void> => this.client.request(`/guilds/${guildID}`, "DELETE");
+
+  /** Get template */
+  getTemplate = (templateCode: string): Promise<APITypes.APITemplate> => this.client.request(`/guilds/templates/${templateCode}`, "GET");
+  /** Create guild from template */
+  newFromTemplate = (templateCode: string, options: APITypes.RESTPostAPITemplateCreateGuildJSONBody): Promise<APITypes.APIGuild> =>
+    this.client.request(`/guilds/templates/${templateCode}`, "POST", options);
 
   /** Get Audit Log */
   getAuditLog = (guildID: APITypes.Snowflake, options: APITypes.RESTGetAPIAuditLogQuery): Promise<APITypes.APIAuditLog> => this.client.request(`/guilds/${guildID}/audit-logs`, "GET", options);
@@ -61,6 +68,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Prune API */
   public prune: Prune = new Prune(this.client);
+
+  /** Template API */
+  public templates: GuildTemplate = new GuildTemplate(this.client);
 
   /** Integrations API */
   public integrations: GuildIntegrations = new GuildIntegrations(this.client);
