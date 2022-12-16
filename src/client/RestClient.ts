@@ -1,18 +1,23 @@
-import Users from "./rest/Users.js";
+import { Users, Guilds } from "./rest/index.js";
 import Centra from "centra";
-import { HTTPMethods } from "../types/ClientTypes.js";
+import { HTTPMethods } from "../types/RestTypes.js";
 import { RESTError } from "discord-api-types/v10.js";
-import { url } from "inspector";
+import { DefaultUserAgent } from "../utils/constants.js";
 
 class RestClient {
   private authorization: string;
   private baseURL: string;
-  public users: Users;
+  private userAgent: string;
 
-  constructor(token: string, url: string, version: number) {
+  public users: Users;
+  public guilds: Guilds;
+
+  constructor(token: string, url: string, version: number, userAgentAppendix: string) {
     this.authorization = `Bot ${token}`;
     this.baseURL = `${url}/v${version}`;
     this.users = new Users(this);
+    this.guilds = new Guilds(this);
+	this.userAgent = `${DefaultUserAgent} ${userAgentAppendix}`;
   }
 
   async request(endpoint: string, method: HTTPMethods, options?: any): Promise<any> {
@@ -25,9 +30,14 @@ class RestClient {
       }
 
       const req = Centra(url, method);
+	  req.header("User-Agent", this.userAgent);
       req.header("Authorization", this.authorization);
 
-      if (method === "POST") {
+      if (options && options.auditLogReason) {
+        req.header("X-Audit-Log-Reason", options.auditLogReason);
+      }
+
+      if ((method === "POST" || method === "PATCH") && options) {
         req.body(options);
       }
 

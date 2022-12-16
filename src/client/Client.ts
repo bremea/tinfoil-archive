@@ -6,8 +6,8 @@ class Client extends RestClient {
   private token: string;
 
   constructor(token: string, options?: ClientOptions) {
-	options = {...DefaultClientOptions, ...options};
-    super(token, options.url, options.version);
+    options = { ...DefaultClientOptions, ...options };
+    super(token, options.url, options.version, options.userAgentAppendix);
     this.token = token;
   }
 }

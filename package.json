@@ -1,13 +1,13 @@
 {
   "name": "tinfoil",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "Small Discord API wrapper designed for scalability",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "start": "node ./dist",
-    "test": "ts-node-esm ./test/test.ts"
+    "test": "ts-node-esm ./test/test.js"
   },
   "repository": {
     "type": "git",
