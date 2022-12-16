@@ -1,4 +1,4 @@
-import { Client } from "../src/index.js";
+import { Client } from "../dist/index.js";
 
 const bot = new Client(process.env.BOT_TOKEN as string);
 

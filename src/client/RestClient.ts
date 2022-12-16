@@ -37,7 +37,7 @@ class RestClient {
         req.header("X-Audit-Log-Reason", options.auditLogReason);
       }
 
-      if ((method === "POST" || method === "PATCH") && options) {
+      if ((method === "POST" || method === "PATCH" || method === "PUT") && options) {
         req.body(options);
       }
 
