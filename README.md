@@ -3,6 +3,10 @@
 # Tinfoil
 [![](https://dcbadge.vercel.app/api/server/CXhCTscDfc)](https://discord.gg/CXhCTscDfc)
 
+### ⚠️ Hey! Tinfoil is in <ins>alpha</ins>.
+This means that not all of the Discord API is currently supported. It is recommended against using Tinfoil currently, as breaking changes are frequent.
+
+## About
 Tinfoil is a small and lightweight wrapper for Discord's REST and Gateway API, written in Typescript and designed with scalability in mind. It leaves a lot of stuff up to the user, allowing for more fine-tuned control over how your bot interacts with the API. It is best to think of Tinfoil more like a general utilities library for working with Discord's API, rather than a feature-complete library such as [discord.js](https://discord.js.org).
 
 This was originally built for internal use at [combobot](https://discord.gg/J3rYDmbjU4), and currently powers our Gateway proxy.
@@ -25,11 +29,11 @@ console.log(await bot.users.me.get()) // Logs bot information
 
 ## Scaling
 
-Tinfoil is designed to be used in a Kubernetes cluster, but it can be modified if needed. Tinfoil provides APIs for global app state management, communication with other pods (shards), and additional utility functions. 
+Tinfoil is designed to be used in a Kubernetes cluster, but it can be modified to a different cluster system if needed. Tinfoil provides APIs for global app state management, communication with other pods (shards), and additional utility functions.
 
-Each pod in the cluster is a separate gateway shard. The cluster manager contains global app state information (total guilds, users, shard status, etc) that is periodically updated by requesting data from each shard. Each shard exposes an HTTP server (additionally used for receiving interactions over HTTP from Discord) that is used to communicate with other shards in the cluster. This way, requests from shard-to-shard are not all routed through a single process.
+Each pod in the cluster represents a separate gateway shard. The cluster manager contains global app state information (total guilds, users, shard status, etc) that is periodically updated by requesting data from each shard. Each shard exposes an HTTP server (additionally used for receiving interactions over HTTP from Discord) that is used to communicate with other shards in the cluster. This way, requests from shard-to-shard are not all routed through a single process.
 
-Below is a high-level overview of what a Kubernetes cluster running tinfoil might look like:
+Below is a high-level overview of what a Kubernetes cluster running Tinfoil might look like:
 
 ![Diagram](https://user-images.githubusercontent.com/63671187/208198606-0752eade-01a8-4815-af97-a2e24c42ccf5.png)
 
@@ -40,4 +44,4 @@ Examples of implementing scaling with Tinfoil:
 
 ## Contributing
 
-Please open an issue with any bug reports, or a 
+Please open an issue with any bug reports, or a pull request to merge something you worked on.
