@@ -5,7 +5,7 @@ Tinfoil is a small and lightweight wrapper for Discord's REST and Gateway API, w
 
 This was originally built for internal use at [combobot](https://discord.gg/J3rYDmbjU4), and currently powers our Gateway proxy.
 
-[Documentation Site](https://example.com) (^-^) [Discord Server (Support)](https://discord.gg/CXhCTscDfc)
+**[Documentation Site](https://example.com)** (^-^) **[Discord Server (Support)](https://discord.gg/CXhCTscDfc)**
 
 ## Getting Started
 You can install Tinfoil with one of the commands below, depending on what package manager you are using:
@@ -14,8 +14,11 @@ commands soon:tm:
 ```
 
 A simple bot example:
-```
-example soon:tm:
+```ts
+import { Client } from "tinfoil";
+
+const bot = new Client(process.env.BOT_TOKEN as string);
+console.log(await bot.users.me.get()) // Logs bot information
 ```
 
 ## Scaling
