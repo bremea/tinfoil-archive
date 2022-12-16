@@ -8,6 +8,14 @@ class GuildRoles extends BaseAPI {
   /** Create role */
   new = (guildID: APITypes.Snowflake, options: WithAuditReason<APITypes.RESTPostAPIGuildRoleJSONBody>): Promise<APITypes.RESTPostAPIGuildRoleResult> =>
     this.client.request(`/guilds/${guildID}/roles`, "POST", options);
+  /** Modify role positions */
+  modifyPositions = (guildID: APITypes.Snowflake, options: WithAuditReason<APITypes.RESTPatchAPIGuildRolePositionsJSONBody>): Promise<APITypes.RESTPatchAPIGuildRolePositionsResult> =>
+    this.client.request(`/guilds/${guildID}/roles`, "PATCH", options);
+  /** Modify role */
+  modify = (guildID: APITypes.Snowflake, roleID: APITypes.Snowflake, options: WithAuditReason<APITypes.RESTPatchAPIGuildRoleJSONBody>): Promise<APITypes.RESTPatchAPIGuildRoleResult> =>
+    this.client.request(`/guilds/${guildID}/roles/${roleID}`, "PATCH", options);
+  /** Delete role */
+  delete = (guildID: APITypes.Snowflake, roleID: APITypes.Snowflake, options: WithAuditReason<{}>): Promise<void> => this.client.request(`/guilds/${guildID}/roles/${roleID}`, "DELETE", options);
 }
 
 export default GuildRoles;
