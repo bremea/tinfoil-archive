@@ -9,6 +9,7 @@ import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
 import Threads from "./Threads.js";
+import WelcomeScreen from "./WelcomeScreen.js";
 import Widget from "./Widget.js";
 
 class GuildsAPI extends BaseAPI {
@@ -35,6 +36,8 @@ class GuildsAPI extends BaseAPI {
 
   /** Get invites */
   getInvites = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildInvitesResult> => this.client.request(`/guilds/${guildID}/invites`, "GET");
+  /** Get vanity URL */
+  getVanityURL = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildVanityUrlResult> => this.client.request(`/guilds/${guildID}/vanity-url`, "GET");
 
   /** Guild channel API */
   public channels: GuildChannels = new GuildChannels(this.client);
@@ -59,6 +62,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Widget API */
   public widget: Widget = new Widget(this.client);
+
+  /** Welcome Screen API */
+  public welcomeScreen: WelcomeScreen = new WelcomeScreen(this.client);
 
   /** Role API */
   public roles: GuildRoles = new GuildRoles(this.client);
