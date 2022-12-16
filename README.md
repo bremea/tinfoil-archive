@@ -30,7 +30,8 @@ Tinfoil is designed to be used in a Kubernetes cluster, but it can be modified i
 Each pod in the cluster is a separate gateway shard. The cluster manager contains global app state information (total guilds, users, shard status, etc) that is periodically updated by requesting data from each shard. Each shard exposes an HTTP server (additionally used for receiving interactions over HTTP from Discord) that is used to communicate with other shards in the cluster. This way, requests from shard-to-shard are not all routed through a single process.
 
 Below is a high-level overview of what a Kubernetes cluster running tinfoil might look like:
-![image](https://user-images.githubusercontent.com/63671187/208197679-590e1ba2-f229-43f2-9ffd-d167e38a02a1.png)
+
+![Diagram](https://user-images.githubusercontent.com/63671187/208198606-0752eade-01a8-4815-af97-a2e24c42ccf5.png)
 
 Examples of implementing scaling with Tinfoil:
 ```ts
