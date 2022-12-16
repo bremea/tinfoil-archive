@@ -4,6 +4,7 @@ import BaseAPI from "../Base.js";
 import AutoModeration from "./AutoModeration.js";
 import Emojis from "./Emojis.js";
 import GuildChannels from "./GuildChannels.js";
+import GuildIntegrations from "./GuildIntegrations.js";
 import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
@@ -51,6 +52,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Prune API */
   public prune: Prune = new Prune(this.client);
+
+  /** Integrations API */
+  public integrations: GuildIntegrations = new GuildIntegrations(this.client);
 
   /** Role API */
   public roles: GuildRoles = new GuildRoles(this.client);
