@@ -5,6 +5,7 @@ import AutoModeration from "./AutoModeration.js";
 import Emojis from "./Emojis.js";
 import GuildChannels from "./GuildChannels.js";
 import GuildMembers from "./members/Members.js";
+import GuildRoles from "./Roles.js";
 import Threads from "./Threads.js";
 
 class GuildsAPI extends BaseAPI {
@@ -36,6 +37,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Emoji API */
   public emojis: Emojis = new Emojis(this.client);
+
+  /** Role API */
+  public roles: GuildRoles = new GuildRoles(this.client);
 }
 
 export default GuildsAPI;

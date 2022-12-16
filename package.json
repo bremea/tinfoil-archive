@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node ./dist",
-    "test": "ts-node-esm ./test/test.js"
+    "test": "node ./test/test.js"
   },
   "repository": {
     "type": "git",
