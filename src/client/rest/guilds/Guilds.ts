@@ -8,6 +8,7 @@ import GuildIntegrations from "./GuildIntegrations.js";
 import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
+import ScheduledEvents from "./ScheduledEvents.js";
 import Threads from "./Threads.js";
 import VoiceStates from "./VoiceStates.js";
 import WelcomeScreen from "./WelcomeScreen.js";
@@ -60,6 +61,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Integrations API */
   public integrations: GuildIntegrations = new GuildIntegrations(this.client);
+
+  /** Events API */
+  public scheduledEvents: ScheduledEvents = new ScheduledEvents(this.client);
 
   /** Widget API */
   public widget: Widget = new Widget(this.client);
