@@ -5,6 +5,7 @@ import AutoModeration from "./AutoModeration.js";
 import Emojis from "./Emojis.js";
 import GuildChannels from "./GuildChannels.js";
 import GuildMembers from "./members/Members.js";
+import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
 import Threads from "./Threads.js";
 
@@ -23,6 +24,16 @@ class GuildsAPI extends BaseAPI {
   /** Get Audit Log */
   getAuditLog = (guildID: APITypes.Snowflake, options: APITypes.RESTGetAPIAuditLogQuery): Promise<APITypes.APIAuditLog> => this.client.request(`/guilds/${guildID}/audit-logs`, "GET", options);
 
+  /** Modify MFA level */
+  modifyMFA = (guildID: APITypes.Snowflake, options: WithAuditReason<APITypes.RESTPostAPIGuildsMFAJSONBody>): Promise<APITypes.RESTPostAPIGuildsMFAResult> =>
+    this.client.request(`/guilds/${guildID}/mfa`, "POST", options);
+
+  /** Get voice regions */
+  getVoiceRegions = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildVoiceRegionsResult> => this.client.request(`/guilds/${guildID}/regions`, "GET");
+
+  /** Get invites */
+  getInvites = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildInvitesResult> => this.client.request(`/guilds/${guildID}/invites`, "GET");
+
   /** Guild channel API */
   public channels: GuildChannels = new GuildChannels(this.client);
 
@@ -37,6 +48,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Emoji API */
   public emojis: Emojis = new Emojis(this.client);
+
+  /** Prune API */
+  public prune: Prune = new Prune(this.client);
 
   /** Role API */
   public roles: GuildRoles = new GuildRoles(this.client);
