@@ -6,8 +6,7 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist",
-    "test": "node ./test/test.js"
+    "test": "ts-node-esm test/test.ts"
   },
   "repository": {
     "type": "git",
