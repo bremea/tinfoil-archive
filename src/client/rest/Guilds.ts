@@ -8,6 +8,7 @@ import {
   RESTGetAPIGuildEmojisResult,
   RESTPatchAPIAutoModerationRuleJSONBody,
   RESTPatchAPIAutoModerationRuleResult,
+  RESTPatchAPIGuildEmojiJSONBody,
   RESTPostAPIAutoModerationRuleJSONBody,
   RESTPostAPIGuildEmojiJSONBody,
   Snowflake,
@@ -32,12 +33,14 @@ class AutoModeration extends BaseAPI {
   // Get rule
   getRule = (guildID: Snowflake, ruleID: Snowflake): Promise<RESTGetAPIAutoModerationRuleResult> => this.client.request(`/guilds/${guildID}/auto-moderation/rules/${ruleID}`, "GET");
   // Create rule
-  newRule = (guildID: Snowflake, options: RESTPostAPIAutoModerationRuleJSONBody): Promise<APIAutoModerationRule> => this.client.request(`/guilds/${guildID}/auto-moderation/rules`, "POST", options);
+  newRule = (guildID: Snowflake, options: WithAuditReason<RESTPostAPIAutoModerationRuleJSONBody>): Promise<APIAutoModerationRule> =>
+    this.client.request(`/guilds/${guildID}/auto-moderation/rules`, "POST", options);
   // Modify rule
-  modifyRule = (guildID: Snowflake, ruleID: Snowflake, options: RESTPatchAPIAutoModerationRuleJSONBody): Promise<RESTPatchAPIAutoModerationRuleResult> =>
+  modifyRule = (guildID: Snowflake, ruleID: Snowflake, options: WithAuditReason<RESTPatchAPIAutoModerationRuleJSONBody>): Promise<RESTPatchAPIAutoModerationRuleResult> =>
     this.client.request(`/guilds/${guildID}/auto-moderation/rules/${ruleID}`, "PATCH", options);
   // Delete rule
-  deleteRule = (guildID: Snowflake, ruleID: Snowflake): Promise<RESTPatchAPIAutoModerationRuleResult> => this.client.request(`/guilds/${guildID}/auto-moderation/rules/${ruleID}`, "DELETE");
+  deleteRule = (guildID: Snowflake, ruleID: Snowflake, options: WithAuditReason<{}>): Promise<RESTPatchAPIAutoModerationRuleResult> =>
+    this.client.request(`/guilds/${guildID}/auto-moderation/rules/${ruleID}`, "DELETE", options);
 }
 
 class Emojis extends BaseAPI {
@@ -47,7 +50,11 @@ class Emojis extends BaseAPI {
   get = (guildID: Snowflake, emojiID: Snowflake): Promise<RESTGetAPIGuildEmojiResult> => this.client.request(`/guilds/${guildID}/emojis/${emojiID}`, "GET");
   // Create emoji
   new = (guildID: Snowflake, options: WithAuditReason<RESTPostAPIGuildEmojiJSONBody>): Promise<RESTGetAPIGuildEmojiResult> => this.client.request(`/guilds/${guildID}/emojis`, "POST", options);
-  
+  // Modify emoji
+  modify = (guildID: Snowflake, emojiID: Snowflake, options: WithAuditReason<RESTPatchAPIGuildEmojiJSONBody>): Promise<RESTGetAPIGuildEmojiResult> =>
+    this.client.request(`/guilds/${guildID}/emojis/${emojiID}`, "PATCH", options);
+  // Delete emoji
+  delete = (guildID: Snowflake, emojiID: Snowflake, options: WithAuditReason<{}>): Promise<undefined> => this.client.request(`/guilds/${guildID}/emojis/${emojiID}`, "DELETE", options);
 }
 
 export default GuildsAPI;
