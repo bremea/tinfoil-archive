@@ -9,10 +9,10 @@ class GuildTemplate extends BaseAPI {
     this.client.request(`/guilds/${guildID}/templates`, "POST", options);
   /** Sync template to guild's current state */
   sync = (guildID: APITypes.Snowflake, templateCode: string): Promise<APITypes.RESTPutAPIGuildTemplateSyncResult> => this.client.request(`/guilds/${guildID}/templates/${templateCode}`, "PUT");
-  /** Sync template to guild's current state */
+  /** Modify guild template */
   modify = (guildID: APITypes.Snowflake, templateCode: string, options: APITypes.RESTPatchAPIGuildTemplateJSONBody): Promise<APITypes.RESTPatchAPIGuildTemplateResult> =>
     this.client.request(`/guilds/${guildID}/templates/${templateCode}`, "PATCH", options);
-  /** Sync template to guild's current state */
+  /** Delete guild template */
   delete = (guildID: APITypes.Snowflake, templateCode: string): Promise<void> => this.client.request(`/guilds/${guildID}/templates/${templateCode}`, "DELETE");
 }
 

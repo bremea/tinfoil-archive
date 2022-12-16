@@ -17,10 +17,10 @@ class RestClient {
     this.baseURL = `${url}/v${version}`;
     this.users = new Users(this);
     this.guilds = new Guilds(this);
-	this.userAgent = `${DefaultUserAgent} ${userAgentAppendix}`;
+    this.userAgent = `${DefaultUserAgent} ${userAgentAppendix}`;
   }
 
-  async request(endpoint: string, method: HTTPMethods, options?: any): Promise<any> {
+  async request(endpoint: string, method: HTTPMethods, options?: any, formData?: boolean): Promise<any> {
     try {
       const url = new URL(this.baseURL + endpoint);
       if (method === "GET" && options) {
@@ -30,7 +30,7 @@ class RestClient {
       }
 
       const req = Centra(url, method);
-	  req.header("User-Agent", this.userAgent);
+      req.header("User-Agent", this.userAgent);
       req.header("Authorization", this.authorization);
 
       if (options && options.auditLogReason) {
@@ -38,7 +38,7 @@ class RestClient {
       }
 
       if ((method === "POST" || method === "PATCH" || method === "PUT") && options) {
-        req.body(options);
+        req.body(options, formData ? "form" : "json");
       }
 
       const res = await req.send();

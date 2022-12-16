@@ -5,6 +5,7 @@ import AutoModeration from "./AutoModeration.js";
 import Emojis from "./Emojis.js";
 import GuildChannels from "./GuildChannels.js";
 import GuildIntegrations from "./GuildIntegrations.js";
+import GuildStickers from "./GuildStickers.js";
 import GuildTemplate from "./GuildTemplate.js";
 import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
@@ -77,6 +78,9 @@ class GuildsAPI extends BaseAPI {
 
   /** Events API */
   public scheduledEvents: ScheduledEvents = new ScheduledEvents(this.client);
+
+  /** Guild stickers API */
+  public stickers: GuildStickers = new GuildStickers(this.client);
 
   /** Widget API */
   public widget: Widget = new Widget(this.client);
