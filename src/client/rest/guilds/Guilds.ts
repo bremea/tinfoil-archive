@@ -36,6 +36,9 @@ class GuildsAPI extends BaseAPI {
   /** Get voice regions */
   getVoiceRegions = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildVoiceRegionsResult> => this.client.request(`/guilds/${guildID}/regions`, "GET");
 
+  /** Get webhooks */
+  getWebhooks = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildWebhooksResult> => this.client.request(`/guilds/${guildID}/webhooks`, "GET");
+
   /** Get invites */
   getInvites = (guildID: APITypes.Snowflake): Promise<APITypes.RESTGetAPIGuildInvitesResult> => this.client.request(`/guilds/${guildID}/invites`, "GET");
   /** Get vanity URL */
