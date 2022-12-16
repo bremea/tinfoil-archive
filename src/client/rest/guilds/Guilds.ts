@@ -9,6 +9,7 @@ import GuildMembers from "./members/Members.js";
 import Prune from "./Prune.js";
 import GuildRoles from "./Roles.js";
 import Threads from "./Threads.js";
+import VoiceStates from "./VoiceStates.js";
 import WelcomeScreen from "./WelcomeScreen.js";
 import Widget from "./Widget.js";
 
@@ -63,8 +64,11 @@ class GuildsAPI extends BaseAPI {
   /** Widget API */
   public widget: Widget = new Widget(this.client);
 
-  /** Welcome Screen API */
+  /** Welcome screen API */
   public welcomeScreen: WelcomeScreen = new WelcomeScreen(this.client);
+
+  /** Voice states API */
+  public voiceStates: VoiceStates = new VoiceStates(this.client);
 
   /** Role API */
   public roles: GuildRoles = new GuildRoles(this.client);
