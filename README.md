@@ -29,13 +29,9 @@ console.log(await bot.users.me.get()) // Logs bot information
 
 ## Scaling
 
-Tinfoil is designed to be used in a Kubernetes cluster, but it can be modified to a different cluster system if needed. Tinfoil provides APIs for global app state management, communication with other pods (shards), and additional utility functions.
+Tinfoil provides APIs to easily control scaling for sharded bots, including cluster management, global app state management, easy shard-to-shard communication, and additional utility functions. You can bring your own cluster technology, whether that be simple child processes or a large Kubernetes network.
 
-Each pod in the cluster represents a separate gateway shard. The cluster manager contains global app state information (total guilds, users, shard status, etc) that is periodically updated by requesting data from each shard. Each shard exposes an HTTP server (additionally used for receiving interactions over HTTP from Discord) that is used to communicate with other shards in the cluster. This way, requests from shard-to-shard are not all routed through a single process.
-
-Below is a high-level overview of what a Kubernetes cluster running Tinfoil might look like:
-
-![Diagram](https://user-images.githubusercontent.com/63671187/208198606-0752eade-01a8-4815-af97-a2e24c42ccf5.png)
+You can define your cluster manager with the `ShardNetworkManager` class. The cluster manager lets you define what happens when your application needs to add or remove shards (it spawns a child process by default). You can hook a `ShardNetworkManager` to your `Client` class when constructing your bot client.
 
 Examples of implementing scaling with Tinfoil:
 ```ts
