@@ -22,11 +22,12 @@
   "devDependencies": {
     "@types/centra": "^2.2.0",
     "@types/node": "^18.11.9",
+    "discord-api-types": "^0.37.23",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5",
-    "discord-api-types": "^0.37.23"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
-    "centra": "^2.6.0"
+    "centra": "^2.6.0",
+    "typia": "^3.4.9"
   }
 }
