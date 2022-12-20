@@ -5,9 +5,9 @@ import * as APITypes from "discord-api-types/v10";
 import { inflateSync } from "node:zlib";
 import { EventEmitter } from "node:events";
 import { WebSocket } from "ws";
-import { GatewayClientOptions } from "../types/GatewayTypes.js";
+import { GatewayClientEvents, GatewayClientOptions } from "../types/GatewayTypes.js";
 
-class GatewayClient extends EventEmitter {
+class GatewayClient extends (EventEmitter as new () => GatewayClientEvents) {
   private token: string;
   private client: Client;
   private url: string;
@@ -38,11 +38,11 @@ class GatewayClient extends EventEmitter {
       t: type,
       s: s,
     };
-	this.rawConnection?.send(stringify(payload));
+    this.rawConnection?.send(stringify(payload));
   }
 
   private handleIncoming(data: any, isBinary: boolean) {
-    const parsed: APITypes.GatewayReceivePayload = isParse<any>(isBinary ? inflateSync(data as Buffer).toString() : data.toString())!;
+    const parsed: APITypes.GatewayReceivePayload | APITypes.GatewayDispatchPayload = isParse<any>(isBinary ? inflateSync(data as Buffer).toString() : data.toString())!;
     switch (parsed.op) {
       case 1: {
         this.send(1, this.lastSequence);
@@ -70,15 +70,14 @@ class GatewayClient extends EventEmitter {
         break;
       }
       default: {
-        if (parsed.t === "READY") {
-          this.reconnectURL = (parsed.d as APITypes.GatewayReadyDispatchData).resume_gateway_url;
+        if (parsed.t) {
+          if (parsed.t === "READY") {
+            this.reconnectURL = (parsed.d as APITypes.GatewayReadyDispatchData).resume_gateway_url;
+          }
+          this.emit(parsed.t, (parsed as APITypes.GatewayDispatchPayload).d);
         }
         break;
       }
-    }
-
-    if (parsed.t) {
-      this.emit(parsed.t, data as Buffer);
     }
   }
 
@@ -125,7 +124,7 @@ class GatewayClient extends EventEmitter {
   }
 
   private async startHeartbeatLoop(interval: number) {
-	this.heartbeatWasAcknowledged = true;
+    this.heartbeatWasAcknowledged = true;
     await new Promise((r) => setTimeout(r, interval * Math.random()));
     this.sendHeartbeat();
     setInterval(() => {
