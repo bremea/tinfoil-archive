@@ -35,10 +35,10 @@ class GatewayClient extends EventEmitter {
     const payload: object = {
       op: opCode,
       d: data,
-      type: type,
+      t: type,
       s: s,
     };
-    this.rawConnection?.send(stringify(payload));
+	this.rawConnection?.send(stringify(payload));
   }
 
   private handleIncoming(data: any, isBinary: boolean) {
@@ -90,7 +90,7 @@ class GatewayClient extends EventEmitter {
       this.reconnectURL = gatewayData.url;
     }
 
-    this.rawConnection = new WebSocket(isReconnection ? this.reconnectURL : this.url);
+    this.rawConnection = new WebSocket((isReconnection ? this.reconnectURL : this.url) + `/?v=10&encoding=json`);
 
     this.rawConnection.onclose = (data) => {
       if (!data.code || validReconnectionCodes.includes(data.code)) {
@@ -101,8 +101,8 @@ class GatewayClient extends EventEmitter {
     };
 
     this.rawConnection?.on("message", (data, isBinary) => {
-		this.handleIncoming(data, isBinary);
-	});
+      this.handleIncoming(data, isBinary);
+    });
 
     this.rawConnection.onopen = () => {
       if (isReconnection) {
@@ -125,6 +125,7 @@ class GatewayClient extends EventEmitter {
   }
 
   private async startHeartbeatLoop(interval: number) {
+	this.heartbeatWasAcknowledged = true;
     await new Promise((r) => setTimeout(r, interval * Math.random()));
     this.sendHeartbeat();
     setInterval(() => {
