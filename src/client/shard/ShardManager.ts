@@ -1,7 +1,7 @@
 import { EventEmitter } from "node:events";
 import { ShardNetworkManagerOptions } from "../../types/ShardTypes.js";
 
-class ShardNetworkManager extends EventEmitter {
+class ShardManager extends EventEmitter {
   options: ShardNetworkManagerOptions;
 
   constructor(options?: ShardNetworkManagerOptions) {
@@ -10,4 +10,4 @@ class ShardNetworkManager extends EventEmitter {
   }
 }
 
-export default ShardNetworkManager;
+export default ShardManager;
