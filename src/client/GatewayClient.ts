@@ -74,7 +74,8 @@ class GatewayClient extends (EventEmitter as new () => GatewayClientEvents) {
           if (parsed.t === "READY") {
             this.reconnectURL = (parsed.d as APITypes.GatewayReadyDispatchData).resume_gateway_url;
           }
-          this.emit(parsed.t, parsed.d as APITypes.GatewayDispatchPayload);
+		  // @ts-ignore
+          this.emit(parsed.t, (parsed as APITypes.GatewayDispatchPayload).d);
         }
         break;
       }

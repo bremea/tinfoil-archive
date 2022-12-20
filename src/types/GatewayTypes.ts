@@ -61,13 +61,13 @@ export type GatewayClientEvents = TypedEmitter<{
   MESSAGE_REACTION_REMOVE: (data?: APITypes.GatewayMessageReactionRemoveDispatchData) => void;
   MESSAGE_REACTION_REMOVE_ALL: (data?: APITypes.GatewayMessageReactionRemoveAllDispatchData) => void;
   MESSAGE_REACTION_REMOVE_EMOJI: (data?: APITypes.GatewayMessageReactionRemoveEmojiDispatchData) => void;
-  PRESENCE_UPDATE: (data?: APITypes.GatewayPresenceUpdateData) => void;
+  PRESENCE_UPDATE: (data?: APITypes.GatewayPresenceUpdateDispatchData) => void;
   STAGE_INSTANCE_CREATE: (data?: APITypes.GatewayStageInstanceCreateDispatchData) => void;
   STAGE_INSTANCE_UPDATE: (data?: APITypes.GatewayStageInstanceUpdateDispatchData) => void;
   STAGE_INSTANCE_DELETE: (data?: APITypes.GatewayStageInstanceDeleteDispatchData) => void;
   TYPING_START: (data?: APITypes.GatewayTypingStartDispatchData) => void;
   USER_UPDATE: (data?: APITypes.GatewayUserUpdateDispatchData) => void;
-  VOICE_STATE_UPDATE: (data?: APITypes.GatewayVoiceStateUpdateData) => void;
+  VOICE_STATE_UPDATE: (data?: APITypes.GatewayVoiceStateUpdateDispatchData) => void;
   VOICE_SERVER_UPDATE: (data?: APITypes.GatewayVoiceServerUpdateDispatchData) => void;
   WEBHOOKS_UPDATE: (data?: APITypes.GatewayWebhooksUpdateDispatchData) => void;
 }>;
