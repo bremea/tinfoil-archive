@@ -9,7 +9,7 @@
 
 Tinfoil is a small and lightweight wrapper for Discord's REST and Gateway API, written in Typescript and designed with scalability in mind. It leaves a lot of stuff up to the user, allowing for more fine-tuned control over how your bot interacts with the API. It is best to think of Tinfoil more like a general utilities library for working with Discord's API, rather than a feature-complete library, such as [discord.js](https://discord.js.org).
 
-This was originally built for internal use at [combo.bot](https://discord.gg/J3rYDmbjU4), and currently powers our Gateway proxy. We've open-sourced it to the community so everyone can help work on it.
+Tinfoil was originally built to power [combo.bot](https://discord.gg/J3rYDmbjU4)'s gateway proxy.
 
 You can find the documentation [here](https://example.com).
 
