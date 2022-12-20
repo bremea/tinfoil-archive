@@ -6,7 +6,7 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "test": "ts-node-esm test/test.ts"
+    "test": "ts-node-esm -C ttypescript test/test.ts"
   },
   "repository": {
     "type": "git",
@@ -22,12 +22,15 @@
   "devDependencies": {
     "@types/centra": "^2.2.0",
     "@types/node": "^18.11.9",
+    "@types/ws": "^8.5.3",
     "discord-api-types": "^0.37.23",
     "ts-node": "^10.5.0",
+    "ttypescript": "^1.5.15",
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "centra": "^2.6.0",
-    "typia": "^3.4.9"
+    "typia": "^3.4.9",
+    "ws": "^8.11.0"
   }
 }

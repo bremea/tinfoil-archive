@@ -1,4 +1,4 @@
-import * as APITypes from "discord-api-types/v10.js";
+import * as APITypes from "discord-api-types/v10";
 import { WithAuditReason } from "../../../../types/RestTypes.js";
 import BaseAPI from "../../Base.js";
 import GuildBans from "../Bans.js";

@@ -1,19 +1,24 @@
 import { ClientOptions } from "../types/ClientTypes";
-import { ServerOptions } from "../types/ServerTypes";
-
-export const DefaultServerOptions: ServerOptions = {
-  host: "127.0.0.1",
-  port: 8080,
-};
+import { GatewayClientOptions } from "../types/GatewayTypes";
 
 export const DefaultClientOptions: ClientOptions = {
   url: "https://discord.com/api",
   cdn: "https://cdn.discordapp.com",
   version: 10,
   userAgentAppendix: `Node.js ${process.version}`,
-  server: DefaultServerOptions,
+};
+
+export const DefaultGatewayClientOptions: GatewayClientOptions = {
+  intents: [],
+  identifyProperties: {
+    os: "Linux",
+    browser: "Tinfoil Alpha",
+    device: "Tinfoil Alpha",
+  },
 };
 
 export const TinfoilVersion = "0.1.0";
 
-export const DefaultUserAgent = `DiscordBot (https://tinfoil.bremea.com, ${TinfoilVersion})`;
+export const DefaultUserAgent = `DiscordBot (https://tinfoil.dev, ${TinfoilVersion})`;
+
+export const validReconnectionCodes = [4000, 4001, 4002, 4003, 4004, 4005, 4007, 4008, 4009];

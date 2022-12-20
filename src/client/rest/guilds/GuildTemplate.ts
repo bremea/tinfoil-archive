@@ -1,4 +1,4 @@
-import * as APITypes from "discord-api-types/v10.js";
+import * as APITypes from "discord-api-types/v10";
 import BaseAPI from "../Base.js";
 
 class GuildTemplate extends BaseAPI {

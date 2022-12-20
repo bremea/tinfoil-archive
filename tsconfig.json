@@ -4,17 +4,30 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "sourceMap": true,
-    "declaration": false,
     "esModuleInterop": true,
     "allowJs": true,
     "declaration": true,
-    "module": "ESNext",
+    "module": "ES2020",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2020"
+    "target": "ES2020",
+    "plugins": [
+      {
+        "transform": "typia/lib/transform"
+      }
+    ],
+    "strict": true
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
