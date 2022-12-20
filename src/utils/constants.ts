@@ -22,3 +22,5 @@ export const TinfoilVersion = "0.1.0";
 export const DefaultUserAgent = `DiscordBot (https://tinfoil.dev, ${TinfoilVersion})`;
 
 export const validReconnectionCodes = [4000, 4001, 4002, 4003, 4004, 4005, 4007, 4008, 4009];
+
+export const urlAppendix = `/?v=${DefaultClientOptions.version}&encoding=json`;

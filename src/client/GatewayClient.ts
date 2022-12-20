@@ -1,5 +1,5 @@
 import { isParse, stringify } from "typia";
-import { DefaultGatewayClientOptions, validReconnectionCodes } from "../utils/constants.js";
+import { DefaultGatewayClientOptions, urlAppendix, validReconnectionCodes } from "../utils/constants.js";
 import Client from "./Client.js";
 import * as APITypes from "discord-api-types/v10";
 import { inflateSync } from "node:zlib";
@@ -74,7 +74,7 @@ class GatewayClient extends (EventEmitter as new () => GatewayClientEvents) {
           if (parsed.t === "READY") {
             this.reconnectURL = (parsed.d as APITypes.GatewayReadyDispatchData).resume_gateway_url;
           }
-          this.emit(parsed.t, (parsed as APITypes.GatewayDispatchPayload).d);
+          this.emit(parsed.t, parsed.d as APITypes.GatewayDispatchPayload);
         }
         break;
       }
@@ -89,7 +89,7 @@ class GatewayClient extends (EventEmitter as new () => GatewayClientEvents) {
       this.reconnectURL = gatewayData.url;
     }
 
-    this.rawConnection = new WebSocket((isReconnection ? this.reconnectURL : this.url) + `/?v=10&encoding=json`);
+    this.rawConnection = new WebSocket((isReconnection ? this.reconnectURL : this.url) + urlAppendix);
 
     this.rawConnection.onclose = (data) => {
       if (!data.code || validReconnectionCodes.includes(data.code)) {
