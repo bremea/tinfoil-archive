@@ -4,6 +4,13 @@ import TypedEmitter from "typed-emitter";
 export type GatewayClientOptions = {
   intents?: APITypes.GatewayIntentBits[];
   identifyProperties?: APITypes.GatewayIdentifyProperties;
+  shardOptions?: {
+    id?: number;
+    total?: number;
+    internal?: {
+      subID?: number;
+    };
+  };
 };
 
 export type GatewayClientEvents = TypedEmitter<{

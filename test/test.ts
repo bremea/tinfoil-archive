@@ -1,14 +1,10 @@
-import { Client, GatewayClient, GatewayIntentBits } from "../src/index.js";
+import { Client, GatewayClient, GatewayIntentBits, ShardManager } from "../src/index.js";
 
 const bot = new Client(process.env.BOT_TOKEN as string);
 
-const run = async () => {
-  const me = await bot.users.me.get();
-  console.log(me);
+async function spawn(id: number, total: number, url: string) {
+	
+}
 
-  const gateway = new GatewayClient(bot, { intents: [GatewayIntentBits.Guilds] });
-  gateway.connect();
-  gateway.on("READY", () => console.log("connected to gateway"));
-};
-
-run();
+const shardManager = new ShardManager(bot, spawn);
+shardManager.spawnAll();
