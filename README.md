@@ -1,7 +1,7 @@
 ![Tinfoil Logo](assets/tinfoil.jpeg "Tinfoil Logo")
 
 
-> **Warning**: Tinfoil is in <ins>alpha</ins>. This means that not all of the Discord API is currently supported. It is recommended against using Tinfoil currently, as breaking changes are frequent.
+> **NOTICE**: This repo is <ins>old</ins>! The new version of tinfoil is at [https://github.com/bremea/tinfoil](https://github.com/bremea/tinfoil)
 
 # Tinfoil
 [![](https://dcbadge.vercel.app/api/server/CXhCTscDfc)](https://discord.gg/CXhCTscDfc)
